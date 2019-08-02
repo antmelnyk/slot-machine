@@ -1,0 +1,21 @@
+$slots-list: 'BAR' 'BAR2X' 'BAR3X' 'SEVEN' 'CHERRY';
+
+.reels-container {
+  display: flex;
+}
+
+.reel {
+  
+  .slot {
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    @each $slot in $slots-list {
+      &.slot--#{$slot} { 
+        background-image: url('../images/#{$slot}.png');
+      }
+    }
+  }
+}
