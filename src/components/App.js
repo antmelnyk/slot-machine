@@ -5,6 +5,7 @@ import thunk from 'redux-thunk'
 import rootReducer from '../store/reducers'
 
 import ReelsContainer from './ReelsContainer'
+import Spin from './Spin'
 
 function configureStore() {
   const store = createStore(
@@ -21,7 +22,10 @@ function configureStore() {
 export default function App() {
   return (
     <Provider store={ configureStore() }>
-      <ReelsContainer />
+      <div className='app-container'>
+        <ReelsContainer />
+        <Spin />
+      </div>
     </Provider>
   )
 }

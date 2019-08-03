@@ -1,24 +1,24 @@
-import { slot, reelPosition, REELS_NUMBER } from './constants'
+import { slots, reelPosition, REELS_NUMBER } from './constants'
+import { randomInteger, randomProperty } from '../randomizer'
 
 const initialState = {
 
-  slots: [
-    slot.BAR3X,
-    slot.BAR,
-    slot.BAR2X,
-    slot.SEVEN,
-    slot.CHERRY
-  ],
+  slots,
 
-  reels: [...Array(REELS_NUMBER)].map((v, index) => {
+  reels: [...Array(REELS_NUMBER)].map((e, index) => {
     return {
+      isSpinning: false,
       id: index,
-      position: reelPosition.SINGLE,
-      activeSlot: [0]
+      position: randomProperty(reelPosition),
+      // For SINGLE position active slot is in center
+      // For DOUBLE position active slot is on top
+      activeSlot: slots[randomInteger(slots.length)]
     }
   }),
 
-  isSpinning: false
+  spinnedOnce: false,
+
+  balance: 1000
 }
 
 export default initialState

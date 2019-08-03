@@ -1,24 +1,34 @@
 import initialState from './initialState'
+import { START_SPINNING, STOP_SPINNING } from './constants'
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
 
-    case 'SPIN_REELS':
+    case START_SPINNING:
       return {
         ...state,
-        isSpinning: true,
-        reels: action.reels.map(reel => {
+        balance: state.balance - 1,
+        spinnedOnce: true,
+        reels: state.reels.map(reel => {
           return {
-            position: reel.position,
-            activeSlot: reel.activeSlot
+            ...reel,
+            isSpinning: true
           }
         })
       }
 
-    case 'FINISH_SPINNING':
+    case STOP_SPINNING:
       return {
         ...state,
-        isSpinning: !state.isSpinning
+        reels: state.reels.map(reel => {
+          if (reel.id === action.reel.id) {            
+            return {
+              ...action.reel,
+              isSpinning: false
+            };
+          }
+          return reel;
+        })
       }
 
     default:

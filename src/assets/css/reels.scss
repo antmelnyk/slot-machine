@@ -1,20 +1,104 @@
-$slots-list: 'BAR' 'BAR2X' 'BAR3X' 'SEVEN' 'CHERRY';
+$slots-list: 'BAR3X' 'BAR' 'BAR2X' 'SEVEN' 'CHERRY';
+$slot-height: 200px;
+$slot-width: 200px;
 
 .reels-container {
   display: flex;
+  height: $slot-height * 2;
+  overflow: hidden;
+  border: 10px solid white;
+  border-radius: 10px;
+  box-shadow: inset 0 0 30px 20px black, 0 0 100px 1px rgba(255, 217, 0, 0.5);
 }
 
 .reel {
-  
+  border-right: 10px solid white;
+  box-shadow: inset 0 0 30px 1px black;
+  z-index: -1;
+
+  &:last-child {
+    border-right: none;
+  }
+
   .slot {
-    width: 200px;
-    height: 200px;
+    width: $slot-width;
+    height: $slot-height;
     background-repeat: no-repeat;
     background-position: center;
 
     @each $slot in $slots-list {
       &.slot--#{$slot} { 
         background-image: url('../images/#{$slot}.png');
+      }
+    }
+  }
+
+  &--spinning {
+    animation-name: spinning;
+    animation-duration: 0.15s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  &--spinned-single {
+
+    @each $slot in $slots-list {
+      $i: index($slots-list, $slot);
+
+      &.reel--spinned-to-#{$slot} {
+        animation-name: spinToSingle#{$i};
+        animation-duration: 0.5s;
+        animation-timing-function: ease;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+
+  &--spinned-double {
+
+    @each $slot in $slots-list {
+      $i: index($slots-list, $slot);
+      
+      &.reel--spinned-to-#{$slot} { 
+        animation-name: spinToDouble#{$i};
+        animation-duration: 0.5s;
+        animation-timing-function: ease;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+}
+
+@keyframes spinning {
+  0% { margin-top: 0px; }
+  100% { margin-top: -(length($slots-list) * $slot-height); }
+}
+
+@for $i from 1 to (length($slots-list) + 1) {
+  @keyframes spinToSingle#{$i} {
+    0% { 
+      margin-top: 0px; 
+    }
+    100% { 
+      @if $i == 1 {
+        margin-top: -($slot-height * length($slots-list) - $slot-height / 2);
+      } @else {
+        margin-top: -($slot-height * ($i - 1) - $slot-height / 2);
+      }
+    }
+  }
+}
+
+@for $i from 1 to (length($slots-list) + 1) {
+  @keyframes spinToDouble#{$i} {
+    0% { 
+      margin-top: 0px; 
+    }
+    100% { 
+      @if $i == 1 {
+        margin-top: -($slot-height * length($slots-list));
+      } @else {
+        margin-top: -($slot-height * ($i - 1));
       }
     }
   }
