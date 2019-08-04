@@ -1,13 +1,17 @@
 import initialState from './initialState'
-import { START_SPINNING, STOP_SPINNING } from './constants'
+
+import { 
+  START_SPINNING,
+  STOP_SPINNING,
+  CHARGE_PAYMENT
+} from './constants'
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-
+    
     case START_SPINNING:
       return {
         ...state,
-        balance: state.balance - 1,
         spinnedOnce: true,
         reels: state.reels.map(reel => {
           return {
@@ -29,6 +33,12 @@ const rootReducer = (state = initialState, action) => {
           }
           return reel;
         })
+      }
+
+    case CHARGE_PAYMENT:
+      return {
+        ...state,
+        balance: state.balance - 1
       }
 
     default:

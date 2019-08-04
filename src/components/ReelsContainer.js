@@ -12,7 +12,6 @@ const ReelsContainer = (props) => {
         <Reel 
           {...reel}
           key={reel.id}
-          delay={reel.id * REEL_DELAY}
         /> 
       ))}
     </div>

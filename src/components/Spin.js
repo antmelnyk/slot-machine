@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { startSpinning } from '../store/actions'
 
 const Spin = (props) => {
-
+  
   function handleSpin() {
     if (!props.isSpinning) props.startSpinning()
   }
