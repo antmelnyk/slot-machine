@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 const Reel = (props) => {
   const isSpinningClass = props.isSpinning ? 'reel--spinning' : '';
@@ -18,6 +19,14 @@ const Reel = (props) => {
       {slots}
     </div>
   )
+}
+
+Reel.propTypes = {
+  id: PropTypes.number,
+  position: PropTypes.string,
+  activeSlot: PropTypes.string,
+  isSpinning: PropTypes.bool,
+  slots: PropTypes.arrayOf(PropTypes.string)
 }
 
 const mapStateToProps = state => ({ slots: state.slots });

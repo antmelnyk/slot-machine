@@ -1,0 +1,32 @@
+.balance {
+  display: flex;
+  align-items: center;  
+  max-width: 144px;
+  padding: 10px;
+  border: 6px solid white;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+
+  input {
+    width: 100%;
+    border: none;
+    background: transparent;
+  }
+
+  input, .balance__sign {
+    font-size: 40px;
+    font-weight: 600;
+    color: lime;
+  }
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}

@@ -1,5 +1,6 @@
 @import 'reels.scss';
 @import 'spin.scss';
+@import 'balance.scss';
 
 html {
   height: 100%;
@@ -14,4 +15,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.app-container {
+  display: flex;
+
+  .info-area {
+    margin-left: 20px;
+  }
+}
+
+* {
+  outline: none;
 }

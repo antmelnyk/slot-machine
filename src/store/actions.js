@@ -7,12 +7,18 @@ import {
   slots, 
   reelPosition, 
   REEL_DELAY,
-  PAYMENT_AMOUNT, 
+  PAYMENT_AMOUNT,
+  MAX_BALANCE,
   SPINNING_DURATION, 
   START_SPINNING, 
   STOP_SPINNING,
   CHARGE_PAYMENT 
 } from './constants'
+
+import {
+  SET_BALANCE
+} from './constants'
+
 
 export function startSpinning() {
   return function (dispatch, getState) {
@@ -38,4 +44,24 @@ export function startSpinning() {
     dispatch({ type: START_SPINNING })
     setTimeout(() => { dispatchSpinningStop() }, SPINNING_DURATION);
   };
+}
+
+export function setBalance(value) {
+  return function(dispatch, getState) {
+
+    let numericValue = parseInt(value, 10);
+    
+    if (isNaN(numericValue)) {
+      numericValue = 0;
+    } else if (value < 0) {
+      numericValue = 0;
+    } else if (value > MAX_BALANCE) {
+      numericValue = MAX_BALANCE
+    }
+
+    dispatch({
+      type: SET_BALANCE,
+      value: numericValue
+    })
+  }
 }

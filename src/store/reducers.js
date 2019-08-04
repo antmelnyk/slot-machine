@@ -3,7 +3,8 @@ import initialState from './initialState'
 import { 
   START_SPINNING,
   STOP_SPINNING,
-  CHARGE_PAYMENT
+  CHARGE_PAYMENT,
+  SET_BALANCE
 } from './constants'
 
 const rootReducer = (state = initialState, action) => {
@@ -39,6 +40,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         balance: state.balance - 1
+      }
+
+    case SET_BALANCE:
+      return {
+        ...state,
+        balance: action.value
       }
 
     default:
