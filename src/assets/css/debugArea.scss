@@ -1,0 +1,33 @@
+.debug-area {
+  flex-basis: 100%;
+  padding: 20px;
+  margin-top: 30px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  border: 6px solid white;
+  border-radius: 10px;
+}
+
+.mode-selector {
+
+  &__title {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  &__variant {
+
+    label {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    input {
+      margin: 0 10px 0 0;
+    }
+  }
+
+  
+}

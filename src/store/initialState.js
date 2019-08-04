@@ -1,8 +1,18 @@
-import { slots, reelPosition, REELS_NUMBER } from './constants'
-import { randomInteger, randomProperty } from '../randomizer'
+import { 
+  randomInteger,
+  randomProperty
+} from '../randomizer'
+
+import { 
+  mode,
+  slots, 
+  reelPosition,
+  REELS_NUMBER
+} from './constants'
 
 const initialState = {
 
+  activeMode: mode.RANDOM,
   slots,
 
   reels: [...Array(REELS_NUMBER)].map((e, index) => {
@@ -17,8 +27,8 @@ const initialState = {
   }),
 
   spinnedOnce: false,
-
-  balance: 1000
+  balance: 1,
+  
 }
 
 export default initialState

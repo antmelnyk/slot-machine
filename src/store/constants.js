@@ -26,7 +26,18 @@ export const slots = [
   slot.CHERRY
 ]
 
+export const mode = {
+  RANDOM: 'random',
+  FIXED: 'fixed'
+}
+
+export const modes = [
+  mode.RANDOM, mode.FIXED
+]
+
+// Actions
 export const START_SPINNING = 'START_SPINNING'
 export const STOP_SPINNING = 'STOP_SPINNING'
 export const CHARGE_PAYMENT = 'CHARGE_PAYMENT'
 export const SET_BALANCE = 'SET_BALANCE'
+export const SELECT_MODE = 'SELECT_MODE'

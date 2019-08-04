@@ -4,7 +4,8 @@ import {
   START_SPINNING,
   STOP_SPINNING,
   CHARGE_PAYMENT,
-  SET_BALANCE
+  SET_BALANCE,
+  SELECT_MODE
 } from './constants'
 
 const rootReducer = (state = initialState, action) => {
@@ -46,6 +47,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         balance: action.value
+      }
+
+    case SELECT_MODE:
+      return {
+        ...state,
+        activeMode: action.mode
       }
 
     default:

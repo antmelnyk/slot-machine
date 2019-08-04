@@ -3,22 +3,22 @@ import {
   randomProperty 
 } from '../randomizer'
 
-import { 
-  slots, 
-  reelPosition, 
+import {
+  slots,
+  reelPosition,
   REEL_DELAY,
   PAYMENT_AMOUNT,
   MAX_BALANCE,
-  SPINNING_DURATION, 
+  SPINNING_DURATION
+} from './constants'
+
+import {  
   START_SPINNING, 
   STOP_SPINNING,
-  CHARGE_PAYMENT 
+  CHARGE_PAYMENT,
+  SET_BALANCE,
+  SELECT_MODE
 } from './constants'
-
-import {
-  SET_BALANCE
-} from './constants'
-
 
 export function startSpinning() {
   return function (dispatch, getState) {
@@ -63,5 +63,12 @@ export function setBalance(value) {
       type: SET_BALANCE,
       value: numericValue
     })
+  }
+}
+
+export function selectMode(mode) {
+  return {
+    type: SELECT_MODE,
+    mode
   }
 }

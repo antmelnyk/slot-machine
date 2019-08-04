@@ -7,6 +7,7 @@ import rootReducer from '../store/reducers'
 import ReelsContainer from './ReelsContainer'
 import Spin from './Spin'
 import Balance from './Balance';
+import DebugArea from './DebugArea';
 
 function configureStore() {
   const store = createStore(
@@ -32,6 +33,8 @@ export default function App() {
         <div className='info-area'>
           <Balance />
         </div>
+        
+        <DebugArea />
       </div>
       
     </Provider>
