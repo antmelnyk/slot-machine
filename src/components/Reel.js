@@ -17,11 +17,7 @@ const Reel = (props) => {
         spinnedSlotClass = 'reel--spinned-to-' + props.activeSlot
       } else if (props.activePlacement == slotPlacement.BOTTOM) {
         let activeSlotIndex = props.slots.findIndex(slot => slot == props.activeSlot) - 1;
-        console.log(props.slots.findIndex(slot => slot == props.activeSlot) - 1);
-        
-        if(activeSlotIndex == -1) {
-          activeSlotIndex = props.slots.length - 1
-        }
+        if(activeSlotIndex == -1) activeSlotIndex = props.slots.length - 1
         spinnedSlotClass = 'reel--spinned-to-' + props.slots[activeSlotIndex]
       }
   } else {
