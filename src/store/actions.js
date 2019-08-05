@@ -1,15 +1,14 @@
-import { 
-  randomInteger,
-  randomProperty 
-} from '../randomizer'
+import { randomInteger} from '../randomizer'
 
 import {
-  slots,
+  slotsConfig,
+  slotPlacement,
+  slotPlacementConfig,
   reelPosition,
   REEL_DELAY,
   PAYMENT_AMOUNT,
   MAX_BALANCE,
-  SPINNING_DURATION
+  SPINNING_DURATION,
 } from './constants'
 
 import {  
@@ -17,7 +16,9 @@ import {
   STOP_SPINNING,
   CHARGE_PAYMENT,
   SET_BALANCE,
-  SELECT_MODE
+  SELECT_MODE,
+  CHANGE_SLOT_PLACEMENT,
+  CHANGE_REEL_SLOT
 } from './constants'
 
 export function startSpinning() {
@@ -25,11 +26,14 @@ export function startSpinning() {
 
     function dispatchSpinningStop() {
       const reels = getState().reels.map(reel => {
-        const position = randomProperty(reelPosition);
-        const activeSlot = slots[randomInteger(slots.length)];
+        const activePlacement = slotPlacementConfig[randomInteger(slotPlacementConfig.length)];
+        const activePosition = activePlacement == slotPlacement.CENTER ? reelPosition.SINGLE : reelPosition.DOUBLE;
+        const activeSlot = slotsConfig[randomInteger(slotsConfig.length)];
+
         return {
           id: reel.id,
-          position,
+          activePlacement,
+          activePosition,
           activeSlot
         }
       })
@@ -47,7 +51,7 @@ export function startSpinning() {
 }
 
 export function setBalance(value) {
-  return function(dispatch, getState) {
+  return function(dispatch) {
 
     let numericValue = parseInt(value, 10);
     
@@ -70,5 +74,21 @@ export function selectMode(mode) {
   return {
     type: SELECT_MODE,
     mode
+  }
+}
+
+export function changeSlotPlacement(reel_id, placement) {
+  return {
+    type: CHANGE_SLOT_PLACEMENT,
+    reel_id,
+    placement
+  }
+}
+
+export function changeReelSlot(reel_id, slot) {
+  return {
+    type: CHANGE_REEL_SLOT,
+    reel_id,
+    slot
   }
 }

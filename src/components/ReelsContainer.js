@@ -22,7 +22,8 @@ const ReelsContainer = (props) => {
 ReelsContainer.propTypes = {
   reels: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
-    position: PropTypes.string,
+    activePlacement: PropTypes.string,
+    activePosition: PropTypes.string,
     activeSlot: PropTypes.string,
     isSpinning: PropTypes.bool
   }))

@@ -5,7 +5,11 @@ import {
   STOP_SPINNING,
   CHARGE_PAYMENT,
   SET_BALANCE,
-  SELECT_MODE
+  SELECT_MODE,
+  CHANGE_SLOT_PLACEMENT,
+  CHANGE_REEL_SLOT,
+  slotPlacement,
+  reelPosition
 } from './constants'
 
 const rootReducer = (state = initialState, action) => {
@@ -53,6 +57,37 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         activeMode: action.mode
+      }
+
+    case CHANGE_SLOT_PLACEMENT:
+      return {
+        ...state,
+        reels: state.reels.map(reel => {
+          if (reel.id === action.reel_id) {           
+            return {
+              ...reel,
+              activePlacement: action.placement,
+              activePosition: action.placement == slotPlacement.CENTER ?
+                reelPosition.SINGLE :
+                reelPosition.DOUBLE
+            };
+          }
+          return reel;
+        })
+      }
+
+    case CHANGE_REEL_SLOT:     
+      return {
+        ...state,
+        reels: state.reels.map(reel => {
+          if (reel.id === action.reel_id) {
+            return {
+              ...reel,
+              activeSlot: action.slot
+            };
+          }
+          return reel;
+        })
       }
 
     default:

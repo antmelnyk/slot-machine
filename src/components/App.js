@@ -8,6 +8,7 @@ import ReelsContainer from './ReelsContainer'
 import Spin from './Spin'
 import Balance from './Balance';
 import DebugArea from './DebugArea';
+import { modesConfig, reelsPositionConfig, slotPlacementConfig } from '../store/constants'
 
 function configureStore() {
   const store = createStore(
@@ -34,7 +35,11 @@ export default function App() {
           <Balance />
         </div>
         
-        <DebugArea />
+        <DebugArea 
+          modesConfig={modesConfig}
+          reelsPositionConfig={reelsPositionConfig}
+          slotPlacementConfig={slotPlacementConfig}
+        />
       </div>
       
     </Provider>

@@ -1,31 +1,31 @@
-import { 
-  randomInteger,
-  randomProperty
-} from '../randomizer'
+import { randomInteger } from '../randomizer'
 
 import { 
+  REELS_NUMBER,
   mode,
-  slots, 
+  slotPlacementConfig,
+  slotPlacement,
+  slotsConfig,
   reelPosition,
-  REELS_NUMBER
 } from './constants'
 
-const initialState = {
+const activePlacement = slotPlacementConfig[randomInteger(slotPlacementConfig.length)];
+const activePosition = activePlacement == slotPlacement.CENTER ? reelPosition.SINGLE : reelPosition.DOUBLE;
 
-  activeMode: mode.RANDOM,
-  slots,
+const initialState = {
 
   reels: [...Array(REELS_NUMBER)].map((e, index) => {
     return {
       isSpinning: false,
       id: index,
-      position: randomProperty(reelPosition),
-      // For SINGLE position active slot is in center
-      // For DOUBLE position active slot is on top
-      activeSlot: slots[randomInteger(slots.length)]
+      activePlacement,
+      activePosition,
+      activeSlot: slotsConfig[randomInteger(slotsConfig.length)]
     }
   }),
-
+  
+  activeMode: mode.RANDOM,
+  slots: slotsConfig,
   spinnedOnce: false,
   balance: 1,
   

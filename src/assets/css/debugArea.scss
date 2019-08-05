@@ -1,11 +1,14 @@
 .debug-area {
+  display: flex;
   flex-basis: 100%;
+  min-height: 230px;
   padding: 20px;
   margin-top: 30px;
   color: white;
   background: rgba(0, 0, 0, 0.5);
   border: 6px solid white;
   border-radius: 10px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .mode-selector {
@@ -28,6 +31,36 @@
       margin: 0 10px 0 0;
     }
   }
+}
 
-  
+.mode-configuration {
+  margin-left: 50px;
+
+  &__title {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+.fixed-mode-config {
+  margin-top: 20px;
+
+  .config-reel {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    font-size: 20px;
+
+    &__title, &__position {
+      margin-right: 10px;
+    }
+
+    select {
+      background: #a2078c;
+      border: 2px solid #310031;
+      padding: 5px;
+      font-size: 18px;
+      color: white;
+    }
+  }
 }

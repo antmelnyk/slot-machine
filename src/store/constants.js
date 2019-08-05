@@ -10,6 +10,11 @@ export const reelPosition = {
   DOUBLE: 'double'
 }
 
+export const reelsPositionConfig = [
+  reelPosition.SINGLE,
+  reelPosition.DOUBLE
+]
+
 export const slot = {
   BAR3X: 'BAR3X',
   BAR: 'BAR',
@@ -18,7 +23,7 @@ export const slot = {
   CHERRY: 'CHERRY'
 }
 
-export const slots = [
+export const slotsConfig = [
   slot.BAR3X,
   slot.BAR,
   slot.BAR2X,
@@ -26,12 +31,24 @@ export const slots = [
   slot.CHERRY
 ]
 
+export const slotPlacement = {
+  TOP: 'top',
+  CENTER: 'center',
+  BOTTOM: 'bottom'
+}
+
+export const slotPlacementConfig = [
+  slotPlacement.TOP,
+  slotPlacement.CENTER,
+  slotPlacement.BOTTOM
+]
+
 export const mode = {
   RANDOM: 'random',
   FIXED: 'fixed'
 }
 
-export const modes = [
+export const modesConfig = [
   mode.RANDOM, mode.FIXED
 ]
 
@@ -41,3 +58,5 @@ export const STOP_SPINNING = 'STOP_SPINNING'
 export const CHARGE_PAYMENT = 'CHARGE_PAYMENT'
 export const SET_BALANCE = 'SET_BALANCE'
 export const SELECT_MODE = 'SELECT_MODE'
+export const CHANGE_SLOT_PLACEMENT = 'CHANGE_SLOT_PLACEMENT'
+export const CHANGE_REEL_SLOT = 'CHANGE_REEL_SLOT'
