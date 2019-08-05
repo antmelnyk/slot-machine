@@ -5,6 +5,7 @@ import {
   slotPlacement,
   slotPlacementConfig,
   reelPosition,
+  mode,
   REEL_DELAY,
   PAYMENT_AMOUNT,
   MAX_BALANCE,
@@ -24,8 +25,13 @@ import {
 export function startSpinning() {
   return function (dispatch, getState) {
 
-    function dispatchSpinningStop() {
+    function calculateSpinning() {
       const reels = getState().reels.map(reel => {
+        
+        if (getState().activeMode == mode.FIXED) {
+          return reel
+        } 
+
         const activePlacement = slotPlacementConfig[randomInteger(slotPlacementConfig.length)];
         const activePosition = activePlacement == slotPlacement.CENTER ? reelPosition.SINGLE : reelPosition.DOUBLE;
         const activeSlot = slotsConfig[randomInteger(slotsConfig.length)];
@@ -46,7 +52,7 @@ export function startSpinning() {
 
     dispatch({ type: CHARGE_PAYMENT, amount: PAYMENT_AMOUNT })
     dispatch({ type: START_SPINNING })
-    setTimeout(() => { dispatchSpinningStop() }, SPINNING_DURATION);
+    setTimeout(() => { calculateSpinning() }, SPINNING_DURATION);
   };
 }
 

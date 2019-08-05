@@ -13,10 +13,17 @@ const Reel = (props) => {
   if(props.isSpinning) {
     spinnedSlotClass = '';
   } else if (props.activePosition == reelPosition.DOUBLE) {    
-      if (props.activePlacement == slotPlacement.TOP)
+      if (props.activePlacement == slotPlacement.TOP) {
         spinnedSlotClass = 'reel--spinned-to-' + props.activeSlot
-      if (props.activePlacement == slotPlacement.BOTTOM)
-        spinnedSlotClass = 'reel--spinned-to-' + props.slots[props.slots.findIndex(slot => slot == props.activeSlot) - 1]
+      } else if (props.activePlacement == slotPlacement.BOTTOM) {
+        let activeSlotIndex = props.slots.findIndex(slot => slot == props.activeSlot) - 1;
+        console.log(props.slots.findIndex(slot => slot == props.activeSlot) - 1);
+        
+        if(activeSlotIndex == -1) {
+          activeSlotIndex = props.slots.length - 1
+        }
+        spinnedSlotClass = 'reel--spinned-to-' + props.slots[activeSlotIndex]
+      }
   } else {
     spinnedSlotClass = 'reel--spinned-to-' + props.activeSlot
   }
