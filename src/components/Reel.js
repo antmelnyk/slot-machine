@@ -2,37 +2,37 @@ import React from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import Slot from './Slot'
 import { slotPlacement, reelPosition } from '../store/constants';
+import { previousSlot } from '../store/winConditions';
 
 const Reel = (props) => {
   const isSpinningClass = props.isSpinning ? 'reel--spinning' : '';
   const spinnedPositionClass = !props.isSpinning ? 'reel--spinned-' + props.activePosition : '';
-
   let spinnedSlotClass;
-  
+
   if(props.isSpinning) {
     spinnedSlotClass = '';
   } else if (props.activePosition == reelPosition.DOUBLE) {    
       if (props.activePlacement == slotPlacement.TOP) {
         spinnedSlotClass = 'reel--spinned-to-' + props.activeSlot
       } else if (props.activePlacement == slotPlacement.BOTTOM) {
-        let activeSlotIndex = props.slots.findIndex(slot => slot == props.activeSlot) - 1;
-        if(activeSlotIndex == -1) activeSlotIndex = props.slots.length - 1
-        spinnedSlotClass = 'reel--spinned-to-' + props.slots[activeSlotIndex]
+        spinnedSlotClass = 'reel--spinned-to-' + previousSlot(props.activeSlot)
       }
   } else {
     spinnedSlotClass = 'reel--spinned-to-' + props.activeSlot
   }
   
-  const classes = `${isSpinningClass} ${spinnedPositionClass} ${spinnedSlotClass}`;
-
   const slots = props.slots.map(slot => (
-    <div className={`slot slot--${slot}`} key={slot}>
-    </div>
+    <Slot 
+      key={slot}
+      name={slot}
+      isHighlighted={props.highlightSlots.includes(slot)}
+    />
   )) 
 
   return (
-    <div className={`reel ${classes}`}>
+    <div className={`reel ${isSpinningClass} ${spinnedPositionClass} ${spinnedSlotClass}`}>
       {slots}
       {slots}
     </div>
@@ -45,8 +45,20 @@ Reel.propTypes = {
   activePosition: PropTypes.string,
   activeSlot: PropTypes.string,
   isSpinning: PropTypes.bool,
-  slots: PropTypes.arrayOf(PropTypes.string)
+  slots: PropTypes.arrayOf(PropTypes.string),
+  // winConditions: PropTypes.shape({
+  //   placementLine: PropTypes.string,
+  //   highlightSlots: PropTypes.arrayOf(PropTypes.string),
+  //   name: PropTypes.string,
+  //   prize: PropTypes.number
+  // }),
+  activeVictory: PropTypes.number,
+  highlightSlots: PropTypes.array
 }
 
-const mapStateToProps = state => ({ slots: state.slots });
+const mapStateToProps = state => ({ 
+  slots: state.slots, 
+  activeVictory: state.activeVictory,
+  highlightSlots: state.activeVictory !== null ? state.winConditions[state.activeVictory].highlightSlots : []
+});
 export default connect(mapStateToProps, null)(Reel)

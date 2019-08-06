@@ -1,4 +1,4 @@
-import { randomInteger} from '../randomizer'
+import { randomInteger } from '../randomizer'
 
 import {
   slotsConfig,
@@ -7,6 +7,7 @@ import {
   reelPosition,
   mode,
   REEL_DELAY,
+  REELS_NUMBER,
   PAYMENT_AMOUNT,
   MAX_BALANCE,
   SPINNING_DURATION,
@@ -17,6 +18,7 @@ import {
   STOP_SPINNING,
   CHARGE_PAYMENT,
   SET_BALANCE,
+  SET_ACTIVE_VICTORY,
   SELECT_MODE,
   CHANGE_SLOT_PLACEMENT,
   CHANGE_REEL_SLOT
@@ -48,11 +50,29 @@ export function startSpinning() {
         type: STOP_SPINNING,
         reel
       }), index * REEL_DELAY));
+
+      setTimeout(() => {
+        checkWinConditions();
+      }, REEL_DELAY * REELS_NUMBER);
+    }
+
+    function checkWinConditions() {     
+      getState().winConditions.forEach((win, victory_id) => {
+        if (win.checkReelsForCondition(getState().reels)) {
+          dispatch({
+            type: SET_ACTIVE_VICTORY,
+            victory_id
+          })
+        }
+      })
     }
 
     dispatch({ type: CHARGE_PAYMENT, amount: PAYMENT_AMOUNT })
     dispatch({ type: START_SPINNING })
-    setTimeout(() => { calculateSpinning() }, SPINNING_DURATION);
+    
+    setTimeout(() => { 
+      calculateSpinning();
+    }, SPINNING_DURATION);
   };
 }
 

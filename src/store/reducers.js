@@ -8,6 +8,7 @@ import {
   SELECT_MODE,
   CHANGE_SLOT_PLACEMENT,
   CHANGE_REEL_SLOT,
+  SET_ACTIVE_VICTORY,
   slotPlacement,
   reelPosition
 } from './constants'
@@ -51,6 +52,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         balance: action.value
+      }
+
+    case SET_ACTIVE_VICTORY:
+      return {
+        ...state,
+        activeVictory: action.victory_id
       }
 
     case SELECT_MODE:

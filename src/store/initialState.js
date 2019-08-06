@@ -6,14 +6,15 @@ import {
   slotPlacementConfig,
   slotPlacement,
   slotsConfig,
-  reelPosition,
+  reelPosition
 } from './constants'
+
+import { winConditions } from './winConditions'
 
 const activePlacement = slotPlacementConfig[randomInteger(slotPlacementConfig.length)];
 const activePosition = activePlacement == slotPlacement.CENTER ? reelPosition.SINGLE : reelPosition.DOUBLE;
 
 const initialState = {
-
   reels: [...Array(REELS_NUMBER)].map((e, index) => {
     return {
       isSpinning: false,
@@ -23,12 +24,12 @@ const initialState = {
       activeSlot: slotsConfig[randomInteger(slotsConfig.length)]
     }
   }),
-  
   activeMode: mode.RANDOM,
   slots: slotsConfig,
   spinnedOnce: false,
   balance: 1,
-  
+  winConditions: winConditions,
+  activeVictory: null
 }
 
 export default initialState
