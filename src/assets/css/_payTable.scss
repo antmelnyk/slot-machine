@@ -1,6 +1,7 @@
+@import 'variables';
+
 .pay-table {
   margin-top: 20px;
-  padding: 10px;
   background: rgba(0, 0, 0, 0.6);
   color: white;
   @include box-styles;
@@ -8,6 +9,36 @@
 
 .pay-table-item {
   display: flex;
+  align-items: center;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 600;
 
-  
+  &__amount, &__slots, &__placement {
+    margin-right: 3px;
+  }
+
+  &__slots {
+    display: flex;
+  }
+
+  &__slot {
+    width: 50px;
+    height: 50px;
+    margin-left: -8px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    @each $slot in $slots-list {
+      &.pay-table-item__slot--#{$slot} { 
+        background-image: url('../images/#{$slot}.png');
+      }
+    }
+  }
+
+  &__prize {
+    margin-left: auto;
+    font-size: 30px;
+  }  
 }

@@ -2,12 +2,14 @@ import { slot, slotPlacement, slotsConfig } from "./constants";
 
 export const winConditions = [
   {
+    id: 0,
     checkReelsForCondition(reels) {
       return reels.every(reel => (reel.activeSlot == slot.CHERRY && reel.activePlacement == slotPlacement.TOP) || 
       (reel.activeSlot == nextSlot(slot.CHERRY) && reel.activePlacement == slotPlacement.BOTTOM))
     },
-    highlightSlots: [slot.CHERRY],
-    name: '3 CHERRY on top line',
+    slots: [slot.CHERRY, slot.CHERRY, slot.CHERRY],
+    amount: 3,
+    where: slotPlacement.TOP,
     prize: 3000
   }
 ]

@@ -12,14 +12,11 @@ html {
 }
 
 body {
-  height: 100%;
   margin: 0;
+  padding: 20px 0;
   background: linear-gradient(135deg, rgb(76, 10, 102) 0%, rgb(179, 16, 162) 100%);
   background-repeat: no-repeat;
   background-attachment: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 input, button {
@@ -27,12 +24,42 @@ input, button {
 }
 
 .app-container {
-  width: 1000px;
-  display: flex;
-  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  display: grid;
+  grid-template-columns: auto 400px;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "play info"
+    "play info"
+    "debug debug";
+
+  .play-area {
+    grid-area: play;
+    position: relative;
+    text-align: center;
+    
+    &__title {
+      position: absolute;
+      z-index: 2;
+      font-size: 30px;
+      font-weight: 600;
+      left: 0;
+      right: 0;
+      top: -40px;
+      width: 300px;
+      margin: 0 auto;
+      padding: 10px 0;
+      text-align: center;
+      background: linear-gradient(135deg, rgb(76, 10, 102) 0%, rgb(179, 16, 162) 100%);
+      color: white;
+      text-transform: uppercase;
+      @include box-styles
+    }
+  }
 
   .info-area {
-    flex-grow: 2;
+    grid-area: info;
     margin-left: 20px;
   }
 }

@@ -2,7 +2,7 @@
 
 .reels-container {
   position: relative;
-  display: flex;
+  display: inline-flex;
   height: $slot-height * 2;
   overflow: hidden;
   border: 10px solid white;

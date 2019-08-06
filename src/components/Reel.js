@@ -53,6 +53,6 @@ Reel.propTypes = {
 const mapStateToProps = state => ({ 
   slots: state.slots, 
   activeWinCondition: state.activeWinCondition,
-  highlightSlots: state.activeWinCondition !== null ? state.winConditions[state.activeWinCondition].highlightSlots : []
+  highlightSlots: state.activeWinCondition !== null ? state.winConditions[state.activeWinCondition].slots : []
 });
 export default connect(mapStateToProps, null)(Reel)

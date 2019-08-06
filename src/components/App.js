@@ -7,6 +7,7 @@ import rootReducer from '../store/reducers'
 import ReelsContainer from './ReelsContainer'
 import SpinButton from './SpinButton'
 import Balance from './Balance';
+import PayTable from './PayTable';
 import DebugArea from './DebugArea';
 import { modesConfig, reelsPositionConfig, slotPlacementConfig } from '../store/constants'
 
@@ -27,12 +28,16 @@ export default function App() {
     <Provider store={ configureStore() }>
 
       <div className='app-container'>
+
         <div className='play-area'>
+          <h1 className='play-area__title'>Slot Machine</h1>
           <ReelsContainer />
           <SpinButton />
         </div>
+
         <div className='info-area'>
           <Balance />
+          <PayTable />
         </div>
         
         <DebugArea 
@@ -40,6 +45,7 @@ export default function App() {
           reelsPositionConfig={reelsPositionConfig}
           slotPlacementConfig={slotPlacementConfig}
         />
+
       </div>
       
     </Provider>
