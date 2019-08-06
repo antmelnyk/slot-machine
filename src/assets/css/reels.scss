@@ -3,12 +3,34 @@ $slot-height: 200px;
 $slot-width: 200px;
 
 .reels-container {
+  position: relative;
   display: flex;
   height: $slot-height * 2;
   overflow: hidden;
   border: 10px solid white;
   border-radius: 10px;
   box-shadow: inset 0 0 30px 20px black, 0 0 100px 1px rgba(255, 217, 0, 0.5);
+
+  &__slot-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: -1;
+
+    &:nth-child(1) {
+      top: $slot-height / 2;
+    }
+
+    &:nth-child(2) {
+      top: $slot-height;
+    }
+
+    &:nth-child(3) {
+      top: $slot-height + $slot-height / 2;
+    }
+  }
 }
 
 .reel {

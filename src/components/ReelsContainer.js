@@ -8,12 +8,17 @@ const ReelsContainer = (props) => {
 
   return (
     <div className='reels-container'>
+      <div className='reels-container__slot-line'></div>
+      <div className='reels-container__slot-line'></div>
+      <div className='reels-container__slot-line'></div>
+
       {props.reels.map(reel => (
         <Reel 
           {...reel}
           key={reel.id}
         /> 
       ))}
+      
     </div>
     
   )
