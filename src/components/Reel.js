@@ -46,13 +46,13 @@ Reel.propTypes = {
   activeSlot: PropTypes.string,
   isSpinning: PropTypes.bool,
   slots: PropTypes.arrayOf(PropTypes.string),
-  activeVictory: PropTypes.number,
+  activeWinCondition: PropTypes.number,
   highlightSlots: PropTypes.array
 }
 
 const mapStateToProps = state => ({ 
   slots: state.slots, 
-  activeVictory: state.activeVictory,
-  highlightSlots: state.activeVictory !== null ? state.winConditions[state.activeVictory].highlightSlots : []
+  activeWinCondition: state.activeWinCondition,
+  highlightSlots: state.activeWinCondition !== null ? state.winConditions[state.activeWinCondition].highlightSlots : []
 });
 export default connect(mapStateToProps, null)(Reel)

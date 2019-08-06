@@ -29,7 +29,7 @@ const initialState = {
   spinnedOnce: false,
   balance: 1,
   winConditions: winConditions,
-  activeVictory: null
+  activeWinCondition: null
 }
 
 export default initialState

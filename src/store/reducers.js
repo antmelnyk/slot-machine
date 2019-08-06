@@ -57,7 +57,7 @@ const rootReducer = (state = initialState, action) => {
     case SET_ACTIVE_VICTORY:
       return {
         ...state,
-        activeVictory: action.victory_id
+        activeWinCondition: action.victory_id
       }
 
     case SELECT_MODE:
