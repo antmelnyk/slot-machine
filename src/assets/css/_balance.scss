@@ -3,10 +3,8 @@
   align-items: center;  
   max-width: 144px;
   padding: 10px;
-  border: 6px solid white;
-  border-radius: 10px;
   background: rgba(0, 0, 0, 0.6);
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+  @include box-styles;
 
   input {
     width: 100%;

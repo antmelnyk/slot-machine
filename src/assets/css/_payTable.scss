@@ -1,0 +1,13 @@
+.pay-table {
+  margin-top: 20px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  @include box-styles;
+}
+
+.pay-table-item {
+  display: flex;
+
+  
+}

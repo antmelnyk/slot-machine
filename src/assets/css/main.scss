@@ -1,7 +1,10 @@
-@import 'reels.scss';
-@import 'spin.scss';
-@import 'balance.scss';
-@import 'debugArea.scss';
+@import 
+'mixins', 
+'balance',
+'debugArea',
+'payTable',
+'reels', 
+'spinButton';
 
 html {
   height: 100%;
@@ -29,6 +32,7 @@ input, button {
   flex-wrap: wrap;
 
   .info-area {
+    flex-grow: 2;
     margin-left: 20px;
   }
 }
