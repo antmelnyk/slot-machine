@@ -6,7 +6,6 @@ export const winConditions = [
       return reels.every(reel => (reel.activeSlot == slot.CHERRY && reel.activePlacement == slotPlacement.TOP) || 
       (reel.activeSlot == nextSlot(slot.CHERRY) && reel.activePlacement == slotPlacement.BOTTOM))
     },
-    placementLine: slotPlacement.TOP,
     highlightSlots: [slot.CHERRY],
     name: '3 CHERRY on top line',
     prize: 3000

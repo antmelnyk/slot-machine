@@ -46,12 +46,6 @@ Reel.propTypes = {
   activeSlot: PropTypes.string,
   isSpinning: PropTypes.bool,
   slots: PropTypes.arrayOf(PropTypes.string),
-  // winConditions: PropTypes.shape({
-  //   placementLine: PropTypes.string,
-  //   highlightSlots: PropTypes.arrayOf(PropTypes.string),
-  //   name: PropTypes.string,
-  //   prize: PropTypes.number
-  // }),
   activeVictory: PropTypes.number,
   highlightSlots: PropTypes.array
 }

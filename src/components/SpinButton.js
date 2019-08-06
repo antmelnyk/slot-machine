@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { startSpinning } from '../store/actions'
 
-const Spin = (props) => {
+const SpinButton = (props) => {
   
   const canSpin = !props.isSpinning && props.balance > 0
   
@@ -19,7 +19,7 @@ const Spin = (props) => {
   )
 }
 
-Spin.propTypes = {
+SpinButton.propTypes = {
   isSpinning: PropTypes.bool,
   balance: PropTypes.number,
   startSpinning: PropTypes.func
@@ -30,4 +30,4 @@ const mapStateToProps = state => ({
   balance: state.balance
 });
 const mapDispatchToProps = { startSpinning };
-export default connect(mapStateToProps, mapDispatchToProps)(Spin)
+export default connect(mapStateToProps, mapDispatchToProps)(SpinButton)

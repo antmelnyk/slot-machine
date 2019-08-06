@@ -5,7 +5,7 @@ import thunk from 'redux-thunk'
 import rootReducer from '../store/reducers'
 
 import ReelsContainer from './ReelsContainer'
-import Spin from './Spin'
+import SpinButton from './SpinButton'
 import Balance from './Balance';
 import DebugArea from './DebugArea';
 import { modesConfig, reelsPositionConfig, slotPlacementConfig } from '../store/constants'
@@ -29,7 +29,7 @@ export default function App() {
       <div className='app-container'>
         <div className='play-area'>
           <ReelsContainer />
-          <Spin />
+          <SpinButton />
         </div>
         <div className='info-area'>
           <Balance />
