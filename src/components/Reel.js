@@ -11,6 +11,7 @@ const Reel = (props) => {
   const spinnedPositionClass = !props.isSpinning ? 'reel--spinned-' + props.activePosition : '';
   let spinnedSlotClass;
 
+  // Detect to which slot reel should be animated baseD on its placement and position
   if(props.isSpinning) {
     spinnedSlotClass = '';
   } else if (props.activePosition == reelPosition.DOUBLE) {    
@@ -33,8 +34,9 @@ const Reel = (props) => {
 
   return (
     <div className={`reel ${isSpinningClass} ${spinnedPositionClass} ${spinnedSlotClass}`}>
-      {slots}
-      {slots}
+      {/* Display some extra slots to make visual illusion of endless reel */}
+      { slots }
+      { slots }
     </div>
   )
 }
@@ -47,12 +49,25 @@ Reel.propTypes = {
   isSpinning: PropTypes.bool,
   slots: PropTypes.arrayOf(PropTypes.string),
   activeWinCondition: PropTypes.number,
-  highlightSlots: PropTypes.array
+  highlightSlots: PropTypes.arrayOf(PropTypes.string)
+}
+
+// Loop active win conditions to extract their slots that should be highlighted
+function getHighlightSlots(state) {
+  if (state.activeWinConditions !== null) {
+    return state.winConditions.reduce((acc, current) => {
+      if (state.activeWinConditions.map(win => win.id).includes(current.id)) {
+        acc.push(current.slots);
+      }
+      return acc;
+    }, [])
+  }
+  return [];
 }
 
 const mapStateToProps = state => ({ 
   slots: state.slots, 
-  activeWinCondition: state.activeWinCondition,
-  highlightSlots: state.activeWinCondition !== null ? state.winConditions[state.activeWinCondition].slots : []
+  activeWinConditions: state.activeWinConditions,
+  highlightSlots: getHighlightSlots(state)
 });
 export default connect(mapStateToProps, null)(Reel)

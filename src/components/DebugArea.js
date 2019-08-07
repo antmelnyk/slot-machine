@@ -80,7 +80,7 @@ const DebugArea = (props) => {
       </div>
 
       <div className='mode-configuration'>
-        <span className='mode-configuration__title'>Mode configuration:</span>
+        <span className='mode-configuration__title'>Mode configuration: </span>
         <div className='mode-configuration__body'>
           {modesConfigurations}
         </div>

@@ -18,7 +18,8 @@ import {
   STOP_SPINNING,
   CHARGE_PAYMENT,
   SET_BALANCE,
-  SET_ACTIVE_VICTORY,
+  SET_ACTIVE_VICTORIES,
+  RESET_VICTORIES,
   SELECT_MODE,
   CHANGE_SLOT_PLACEMENT,
   CHANGE_REEL_SLOT
@@ -26,6 +27,8 @@ import {
 
 export function startSpinning() {
   return function (dispatch, getState) {
+
+    dispatch({ type: RESET_VICTORIES })
 
     function calculateSpinning() {
       const reels = getState().reels.map(reel => {
@@ -57,14 +60,19 @@ export function startSpinning() {
     }
 
     function checkWinConditions() {     
-      getState().winConditions.forEach((win, victory_id) => {
+      let victory_ids = [];
+      getState().winConditions.forEach(win => {
         if (win.checkReelsForCondition(getState().reels)) {
-          dispatch({
-            type: SET_ACTIVE_VICTORY,
-            victory_id
-          })
+          victory_ids.push(win.id)
         }
       })
+
+      if(victory_ids.length > 0) {
+        dispatch({
+          type: SET_ACTIVE_VICTORIES,
+          victory_ids
+        })
+      }
     }
 
     dispatch({ type: CHARGE_PAYMENT, amount: PAYMENT_AMOUNT })
