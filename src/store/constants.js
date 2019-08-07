@@ -10,11 +10,6 @@ export const reelPosition = {
   DOUBLE: 'double'
 }
 
-export const reelsPositionConfig = [
-  reelPosition.SINGLE,
-  reelPosition.DOUBLE
-]
-
 export const slot = {
   BAR3X: 'BAR3X',
   BAR: 'BAR',
@@ -23,34 +18,24 @@ export const slot = {
   CHERRY: 'CHERRY'
 }
 
-export const slotsConfig = [
-  slot.BAR3X,
-  slot.BAR,
-  slot.BAR2X,
-  slot.SEVEN,
-  slot.CHERRY
-]
-
 export const slotPlacement = {
   TOP: 'top',
   CENTER: 'center',
   BOTTOM: 'bottom'
 }
 
-export const slotPlacementConfig = [
-  slotPlacement.TOP,
-  slotPlacement.CENTER,
-  slotPlacement.BOTTOM
-]
-
 export const mode = {
   RANDOM: 'random',
   FIXED: 'fixed'
 }
 
-export const modesConfig = [
-  mode.RANDOM, mode.FIXED
-]
+
+// Win conditions
+export const FILLED_TOP_LINE = 'FILLED_TOP_LINE'
+export const FILLED_CENTER_LINE = 'FILLED_CENTER_LINE'
+export const FILLED_BOTTOM_LINE = 'FILLED_BOTTOM_LINE'
+export const FILLED_ANY_LINE = 'FILLED_ANY_LINE'
+export const COMBO_ANY_LINE = 'COMBO_ANY_LINE'
 
 // Actions
 export const START_SPINNING = 'START_SPINNING'
@@ -60,5 +45,5 @@ export const SET_BALANCE = 'SET_BALANCE'
 export const SELECT_MODE = 'SELECT_MODE'
 export const CHANGE_SLOT_PLACEMENT = 'CHANGE_SLOT_PLACEMENT'
 export const CHANGE_REEL_SLOT = 'CHANGE_REEL_SLOT'
-export const SET_ACTIVE_VICTORIES = 'SET_ACTIVE_VICTORIES'
-export const RESET_VICTORIES = 'RESET_VICTORIES'
+export const SET_ACTIVE_WINS = 'SET_ACTIVE_WINS'
+export const RESET_WINS = 'RESET_WINS'

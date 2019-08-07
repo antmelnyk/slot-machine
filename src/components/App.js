@@ -9,7 +9,7 @@ import SpinButton from './SpinButton'
 import Balance from './Balance';
 import PayTable from './PayTable';
 import DebugArea from './DebugArea';
-import { modesConfig, reelsPositionConfig, slotPlacementConfig } from '../store/constants'
+import { modesConfig, reelsPositionConfig, slotPlacementConfig } from '../store/configs'
 
 function configureStore() {
   const store = createStore(

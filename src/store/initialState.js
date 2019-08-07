@@ -1,13 +1,16 @@
-import { randomInteger } from '../randomizer'
+import { randomInteger } from '../helpers'
 
 import { 
   REELS_NUMBER,
   mode,
-  slotPlacementConfig,
   slotPlacement,
-  slotsConfig,
   reelPosition
 } from './constants'
+
+import {
+  slotsConfig,
+  slotPlacementConfig
+} from './configs'
 
 import { winConditions } from './winConditions'
 

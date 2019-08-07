@@ -4,32 +4,29 @@ import PropTypes from 'prop-types'
 
 const PayTable = (props) => {
 
-  let activeWinConditionClass = '';
-
   const winConditions = props.winConditions.map(winCondition => {
     
     const hightlightedItemClass = props.activeWinConditions !== null && props.activeWinConditions.includes(winCondition.id) ?
-      'pay-table-item--highlighted' : '';
+      'condition-item--highlighted' : '';
 
     return (
-      <div className={`pay-table-item ${hightlightedItemClass}`} key={winCondition.id}>
+      <div className={`condition-item ${hightlightedItemClass}`} key={winCondition.id}>
 
-        <div className='pay-table-item__amount'>
-          {/* If amount of slots is set then display them as images, otherwise display text */}
-          {typeof winCondition.amount == 'string' ? winCondition.amount : ''}
+        <div className='condition-item__amount'>
+          {typeof winCondition.amount == 'string' ? winCondition.amount : ''} 
         </div>
 
-        <div className='pay-table-item__slots'>
-          {winCondition.slots.map((slot, index) =>
-            <div className={`pay-table-item__slot pay-table-item__slot--${slot}`} key={index}>
+        <div className='condition-item__slots'>
+          {winCondition.displaySlots().map((slot, index) =>
+            <div className={`condition-item__slot condition-item__slot--${slot}`} key={index}>
             </div>
           )}
         </div>
         
-        <div className='pay-table-item__placement'>
-          on {winCondition.where} line
+        <div className='condition-item__placement'>
+          on {winCondition.placement} line
         </div>
-        <div className='pay-table-item__prize'>
+        <div className='condition-item__prize'>
           {winCondition.prize}
         </div>
 

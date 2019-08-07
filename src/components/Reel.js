@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import Slot from './Slot'
 import { slotPlacement, reelPosition } from '../store/constants';
-import { previousSlot } from '../store/winConditions';
+import { previousSlot } from '../helpers';
 
 const Reel = (props) => {
   const isSpinningClass = props.isSpinning ? 'reel--spinning' : '';
@@ -54,10 +54,11 @@ Reel.propTypes = {
 
 // Loop active win conditions to extract their slots that should be highlighted
 function getHighlightSlots(state) {
+  
   if (state.activeWinConditions !== null) {
     return state.winConditions.reduce((acc, current) => {
-      if (state.activeWinConditions.map(win => win.id).includes(current.id)) {
-        acc.push(current.slots);
+      if (state.activeWinConditions.includes(current.id)) {       
+        current.slots.forEach(slot => acc.push(slot))
       }
       return acc;
     }, [])

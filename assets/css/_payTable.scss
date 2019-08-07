@@ -7,7 +7,7 @@
   @include box-styles;
 }
 
-.pay-table-item {
+.condition-item {
   display: flex;
   align-items: center;
   padding: 10px;
@@ -26,13 +26,12 @@
   &__slot {
     width: 50px;
     height: 50px;
-    margin-left: -8px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
 
     @each $slot in $slots-list {
-      &.pay-table-item__slot--#{$slot} { 
+      &.condition-item__slot--#{$slot} { 
         background-image: url('../images/#{$slot}.png');
       }
     }

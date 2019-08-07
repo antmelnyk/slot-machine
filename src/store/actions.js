@@ -1,9 +1,7 @@
-import { randomInteger } from '../randomizer'
+import { randomInteger } from '../helpers'
 
 import {
-  slotsConfig,
   slotPlacement,
-  slotPlacementConfig,
   reelPosition,
   mode,
   REEL_DELAY,
@@ -13,13 +11,18 @@ import {
   SPINNING_DURATION,
 } from './constants'
 
+import {
+  slotsConfig,
+  slotPlacementConfig
+} from './configs'
+
 import {  
   START_SPINNING, 
   STOP_SPINNING,
   CHARGE_PAYMENT,
   SET_BALANCE,
-  SET_ACTIVE_VICTORIES,
-  RESET_VICTORIES,
+  SET_ACTIVE_WINS,
+  RESET_WINS,
   SELECT_MODE,
   CHANGE_SLOT_PLACEMENT,
   CHANGE_REEL_SLOT
@@ -28,7 +31,7 @@ import {
 export function startSpinning() {
   return function (dispatch, getState) {
 
-    dispatch({ type: RESET_VICTORIES })
+    dispatch({ type: RESET_WINS })
 
     function calculateSpinning() {
       const reels = getState().reels.map(reel => {
@@ -60,17 +63,17 @@ export function startSpinning() {
     }
 
     function checkWinConditions() {     
-      let victory_ids = [];
+      let wins_ids = [];
       getState().winConditions.forEach(win => {
-        if (win.checkReelsForCondition(getState().reels)) {
-          victory_ids.push(win.id)
+        if (win.checkForWin(getState().reels)) {
+          wins_ids.push(win.id)
         }
       })
 
-      if(victory_ids.length > 0) {
+      if (wins_ids.length > 0) {
         dispatch({
-          type: SET_ACTIVE_VICTORIES,
-          victory_ids
+          type: SET_ACTIVE_WINS,
+          wins_ids
         })
       }
     }
