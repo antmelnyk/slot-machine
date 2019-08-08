@@ -5,10 +5,6 @@ To run locally:
 ```
 npm install
 ```
-or
-```
-yarn
-```
 
 Then run the development server:
 ```
