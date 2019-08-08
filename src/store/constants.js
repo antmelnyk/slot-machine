@@ -38,6 +38,7 @@ export const FILLED_CENTER_LINE = 'FILLED_CENTER_LINE'
 export const FILLED_BOTTOM_LINE = 'FILLED_BOTTOM_LINE'
 export const FILLED_ANY_LINE = 'FILLED_ANY_LINE'
 export const COMBO_ANY_LINE = 'COMBO_ANY_LINE'
+export const COMBINATION_ANY_LINE = 'COMBINATION_ANY_LINE'
 
 // Actions
 export const START_SPINNING = 'START_SPINNING'
@@ -58,5 +59,9 @@ export const winConditions = [
   new WinCondition(1, FILLED_CENTER_LINE, [slot.CHERRY], 3, 1000),
   new WinCondition(2, FILLED_BOTTOM_LINE, [slot.CHERRY], 3, 3000),
   new WinCondition(3, FILLED_ANY_LINE, [slot.SEVEN], 3, 2000),
-  new WinCondition(4, COMBO_ANY_LINE, [slot.CHERRY, slot.SEVEN], null, 75)
+  new WinCondition(4, COMBO_ANY_LINE, [slot.CHERRY, slot.SEVEN], null, 75),
+  new WinCondition(5, FILLED_ANY_LINE, [slot.BAR3X], 3, 50),
+  new WinCondition(6, FILLED_ANY_LINE, [slot.BAR2X], 3, 25,
+  new WinCondition(7, COMBO_ANY_LINE, [slot.BAR], 3, 10)),
+  new WinCondition(8, COMBINATION_ANY_LINE, [slot.BAR, slot.BAR3X, slot.BAR2X], null, 5, true)
 ]
