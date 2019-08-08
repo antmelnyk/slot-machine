@@ -17,6 +17,6 @@ There are reels with activeSlot (BAR, CHERRY, etc), activePositon (DOUBLE or SIN
 
 After spinning is done the app calculates machineState (current configuration of reels and their properties), matches it for Win Conditions and activates them if match is found. Also it calculates which slots should be highlighted visually as a part of Win Condition.
 
-The best place to inspect data flow is starting from startSpinning() action in *src/store/actions.js*.
+The best place to inspect data flow is starting from startSpinning() action creator in *src/store/actions.js*.
 
 All requirements from the task are implemented. 🎉
