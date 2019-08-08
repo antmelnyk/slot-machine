@@ -16,7 +16,8 @@ export default function getHighlightedSlots(state) {
         slotPlacementConfig.forEach(placement => {
           if(winCondition.isCombination) {            
             winCondition.slots.forEach(slot => {
-              if (state.machineState[placement].includes(slot)) {
+              if (state.machineState[placement].includes(slot) && 
+                state.machineState[placement].filter(s => winCondition.slots.includes(s)).length > 1) {
                 highlightedSlots[placement].push(slot)
               }
             })
