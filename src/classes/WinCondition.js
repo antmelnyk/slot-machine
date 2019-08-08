@@ -5,11 +5,8 @@ import {
   FILLED_BOTTOM_LINE,
   FILLED_ANY_LINE,
   COMBO_ANY_LINE,
-  reelPosition,
   slotPlacement
 } from '../store/constants'
-
-import { nextSlot, previousSlot } from '../helpers'
 
 export default class WinCondition {
 
@@ -43,36 +40,33 @@ export default class WinCondition {
    * @param {string} condition
    * @param {...string} slots
    */
-  checkForWin(reels) {
+  checkForWin(machineState) {
 
-    const slot = this.slots[0];
+    const conditionSlot = this.slots[0]; 
 
     switch (this.condition) {
 
       case FILLED_TOP_LINE:
-        
-        return reels.every(reel => (reel.activeSlot == slot && reel.activePlacement == slotPlacement.TOP) ||
-          (reel.activeSlot == nextSlot(slot) && reel.activePlacement == slotPlacement.BOTTOM))
+        return machineState[slotPlacement.TOP].every(slot => slot == conditionSlot)
 
       case FILLED_CENTER_LINE:
-        return reels.every(reel => (reel.activeSlot == slot && reel.activePlacement == slotPlacement.CENTER))
+        return machineState[slotPlacement.CENTER].every(slot => slot == conditionSlot)
 
       case FILLED_BOTTOM_LINE:
-        return reels.every(reel => (reel.activeSlot == slot && reel.activePlacement == slotPlacement.BOTTOM) ||
-          (reel.activeSlot == previousSlot(slot) && reel.activePlacement == slotPlacement.TOP))
+        return machineState[slotPlacement.BOTTOM].every(slot => slot == conditionSlot)
 
       case FILLED_ANY_LINE:
-        return reels.every(reel => (reel.activeSlot == slot && reel.activePosition == reelPosition.SINGLE) ||
-          (reel.activeSlot == slot && reel.activePosition == reelPosition.DOUBLE) ||
-          (reel.activeSlot == previousSlot(slot) && reel.activePlacement == slotPlacement.TOP) ||
-          (reel.activeSlot == nextSlot(slot) && reel.activePlacement == slotPlacement.BOTTOM)
-        )
-
-      case COMBO_ANY_LINE:
+        for (let placement in machineState) {
+          if (machineState[placement].every(slot => slot == conditionSlot)) return true
+        }
         return false
-    
+
+      case COMBO_ANY_LINE:      
+        for (let placement in machineState) {
+          if (this.slots.every(slot => machineState[placement].includes(slot))) return true
+        }
+
       default:
-        console.info('Unknown win condition');
         return false
     }
   }

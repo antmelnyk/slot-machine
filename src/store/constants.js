@@ -1,3 +1,5 @@
+import WinCondition from '../classes/WinCondition';
+
 export const REELS_NUMBER = 3
 export const SPINNING_DURATION = 2000
 export const REEL_DELAY = 500
@@ -47,3 +49,14 @@ export const CHANGE_SLOT_PLACEMENT = 'CHANGE_SLOT_PLACEMENT'
 export const CHANGE_REEL_SLOT = 'CHANGE_REEL_SLOT'
 export const SET_ACTIVE_WINS = 'SET_ACTIVE_WINS'
 export const RESET_WINS = 'RESET_WINS'
+export const CALCULATE_MACHINE_STATE = 'CALCULATE_MACHINE_STATE'
+export const CALCULATE_HIGHLIGHTED_SLOTS = 'CALCULATE_HIGHLIGHTED_SLOTS'
+
+// Win conditions
+export const winConditions = [
+  new WinCondition(0, FILLED_TOP_LINE, [slot.CHERRY], 3, 2000),
+  new WinCondition(1, FILLED_CENTER_LINE, [slot.CHERRY], 3, 1000),
+  new WinCondition(2, FILLED_BOTTOM_LINE, [slot.CHERRY], 3, 3000),
+  new WinCondition(3, FILLED_ANY_LINE, [slot.SEVEN], 3, 2000),
+  new WinCondition(4, COMBO_ANY_LINE, [slot.CHERRY, slot.SEVEN], null, 75)
+]

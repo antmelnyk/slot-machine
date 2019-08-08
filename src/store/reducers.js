@@ -10,9 +10,14 @@ import {
   CHANGE_REEL_SLOT,
   SET_ACTIVE_WINS,
   RESET_WINS,
+  CALCULATE_MACHINE_STATE,
+  CALCULATE_HIGHLIGHTED_SLOTS,
   slotPlacement,
   reelPosition
 } from './constants'
+
+import machineState from '../functions/getMachineState'
+import getHighlightedSlots from '../functions/getHighlightedSlots'
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -61,10 +66,23 @@ const rootReducer = (state = initialState, action) => {
         activeWinConditions: action.wins_ids
       }
 
+    case CALCULATE_MACHINE_STATE:
+      return {
+        ...state,
+        machineState: machineState(state.reels)
+      }
+
+    case CALCULATE_HIGHLIGHTED_SLOTS:
+      return {
+        ...state,
+        highlightedSlots: getHighlightedSlots(state)
+      }
+
     case RESET_WINS:
       return {
         ...state,
-        activeWinConditions: null
+        activeWinConditions: null,
+        highlightedSlots: null
       }
 
     case SELECT_MODE:
@@ -76,6 +94,7 @@ const rootReducer = (state = initialState, action) => {
     case CHANGE_SLOT_PLACEMENT:
       return {
         ...state,
+        highlightedSlots: null,
         reels: state.reels.map(reel => {
           if (reel.id === action.reel_id) {           
             return {
@@ -93,6 +112,7 @@ const rootReducer = (state = initialState, action) => {
     case CHANGE_REEL_SLOT:     
       return {
         ...state,
+        highlightedSlots: null,
         reels: state.reels.map(reel => {
           if (reel.id === action.reel_id) {
             return {
