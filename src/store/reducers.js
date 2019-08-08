@@ -94,7 +94,6 @@ const rootReducer = (state = initialState, action) => {
     case CHANGE_SLOT_PLACEMENT:
       return {
         ...state,
-        highlightedSlots: null,
         reels: state.reels.map(reel => {
           if (reel.id === action.reel_id) {           
             return {
@@ -112,7 +111,6 @@ const rootReducer = (state = initialState, action) => {
     case CHANGE_REEL_SLOT:     
       return {
         ...state,
-        highlightedSlots: null,
         reels: state.reels.map(reel => {
           if (reel.id === action.reel_id) {
             return {

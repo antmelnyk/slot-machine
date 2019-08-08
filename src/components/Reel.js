@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import Slot from './Slot'
 import { slotPlacement, reelPosition } from '../store/constants';
-import { previousSlot, nextSlot } from '../helpers';
+import { previousSlot } from '../helpers';
 
 const Reel = (props) => {
   const isSpinningClass = props.isSpinning ? 'reel--spinning' : '';
@@ -24,10 +24,10 @@ const Reel = (props) => {
     spinnedSlotClass = 'reel--spinned-to-' + props.activeSlot
   }
   
-  const slots = props.slots.map(slot => {
-    return <Slot key={slot} name={slot} />
-  }) 
-
+  const slots = props.slots.map(slot =>
+    <Slot key={slot} name={slot} isHighlighted={props.slotsToHighlight.includes(slot)} />
+  )
+  
   return (
     <div className={`reel ${isSpinningClass} ${spinnedPositionClass} ${spinnedSlotClass}`}>
       {/* Display some extra slots to make visual illusion of endless reel */}
@@ -44,12 +44,10 @@ Reel.propTypes = {
   activeSlot: PropTypes.string,
   isSpinning: PropTypes.bool,
   slots: PropTypes.arrayOf(PropTypes.string),
-  activeWinCondition: PropTypes.number,
-  highlightSlots: PropTypes.arrayOf(PropTypes.string)
+  slotsToHighlight: PropTypes.arrayOf(PropTypes.string)
 }
 
 const mapStateToProps = state => ({ 
-  slots: state.slots, 
-  activeWinConditions: state.activeWinConditions
+  slots: state.slots
 });
 export default connect(mapStateToProps, null)(Reel)

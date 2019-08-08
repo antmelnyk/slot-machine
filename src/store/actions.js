@@ -126,17 +126,23 @@ export function selectMode(mode) {
 }
 
 export function changeSlotPlacement(reel_id, placement) {
-  return {
-    type: CHANGE_SLOT_PLACEMENT,
-    reel_id,
-    placement
+  return function (dispatch) {
+    dispatch({ type: RESET_WINS })
+    dispatch({
+      type: CHANGE_SLOT_PLACEMENT,
+      reel_id,
+      placement
+    })
   }
 }
 
 export function changeReelSlot(reel_id, slot) {
-  return {
-    type: CHANGE_REEL_SLOT,
-    reel_id,
-    slot
+  return function (dispatch) {
+    dispatch({ type: RESET_WINS })
+    dispatch({
+      type: CHANGE_REEL_SLOT,
+      reel_id,
+      slot
+    })
   }
 }
